@@ -1,0 +1,476 @@
+{
+  "type": "pd",
+  "fields": {
+    "enforcement_account": {
+      "node_id": 44
+    },
+    "type_of_tow": {
+      "term_id": 336,
+      "name": "Accident"
+    },
+    "call_zone": {
+      "term_id": 715,
+      "name": "Light Duty"
+    },
+    "vehicle_class": {
+      "term_id": 146,
+      "name": "Light Duty"
+    },
+    "hook_and_miles_subtotal": 150,
+    "driver__commission_calc": 40.5,
+    "storage_and_admin": 0,
+    "hours_for_lien_fee": 135,
+    "verified_all_payments_and_da": "false",
+    "driver_1": {
+      "user_id": 401
+    },
+    "enforcement_start_timestamp": "1489453680",
+    "truck": {
+      "node_id": 147
+    },
+    "tow_yard_0": {
+      "node_id": 4
+    },
+    "account_status": {
+      "term_id": 60,
+      "name": "Ready"
+    },
+    "tow_start_address": {
+      "street": "Cobb Pkwy and Canton rd",
+      "city": "Marietta",
+      "province": "GA",
+      "postal_code": "",
+      "country": "us",
+      "latitude": "33.975075",
+      "longitude": "-84.547972",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "tow_end_address": {
+      "street": "950 Allgood Rd",
+      "city": "Marietta",
+      "province": "GA",
+      "postal_code": "30062",
+      "country": "us",
+      "latitude": "33.973322",
+      "longitude": "-84.526299",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "vehicle_year": 2013,
+    "vehicle": {
+      "make": "DODGE",
+      "model": "CHARGER SXT"
+    },
+    "vehicle_color": {
+      "term_id": 112,
+      "name": "White"
+    },
+    "no_plate": "false",
+    "license_plate": {
+      "state": "GA",
+      "country": "us",
+      "plate": "CAV7769"
+    },
+    "vin": "2C3CDXHGXDH574445",
+    "enforcement_start_photos": [
+      {
+        "file_id": 24730,
+        "filename": "8711_1489453982_p_2017-03-13_21-11-58.png",
+        "filesize": "58423",
+        "timestamp": "1489453919",
+        "latitude": "33.973185",
+        "longitude": "-84.525383",
+        "uuid": "c2c9a764-1aeb-b896-5fe5-612d51a9e6d8"
+      },
+      {
+        "file_id": 24731,
+        "filename": "8711_1489453972_p_2017-03-13_21-12-05.png",
+        "filesize": "50631",
+        "timestamp": "1489453926",
+        "latitude": "33.973203",
+        "longitude": "-84.525345",
+        "uuid": "042d210e-45c7-46ef-91f4-eca1715344fb"
+      },
+      {
+        "file_id": 24732,
+        "filename": "8711_1489453977_p_2017-03-13_21-12-11.png",
+        "filesize": "52587",
+        "timestamp": "1489453932",
+        "latitude": "33.973203",
+        "longitude": "-84.525345",
+        "uuid": "6a2dd6d8-0cdb-ba5e-215b-bb3b13601fea"
+      },
+      {
+        "file_id": 24733,
+        "filename": "8711_1489453970_p_2017-03-13_21-12-18.png",
+        "filesize": "44796",
+        "timestamp": "1489453939",
+        "latitude": "33.973203",
+        "longitude": "-84.525345",
+        "uuid": "6275bfc3-4781-fe36-7cb7-213f8232aa60"
+      },
+      {
+        "file_id": 24734,
+        "filename": "8711_1489453968_p_2017-03-13_21-12-27.png",
+        "filesize": "43923",
+        "timestamp": "1489453947",
+        "latitude": "33.973203",
+        "longitude": "-84.525345",
+        "uuid": "3214382b-3169-d59b-e14b-bdff0a5eff12"
+      }
+    ],
+    "damages": {
+      "term_id": 388,
+      "name": "Front End Damage"
+    },
+    "completion_time": "1489456200",
+    "drop_photos": [
+      {
+        "file_id": 24802,
+        "filename": "8711_1489456716_p_2017-03-13_21-57-49.png",
+        "filesize": "63974",
+        "timestamp": "1489456670",
+        "latitude": "33.973175",
+        "longitude": "-84.525390",
+        "uuid": "b4f07a60-73eb-5a90-d980-54980e8f807d"
+      },
+      {
+        "file_id": 24803,
+        "filename": "8711_1489456713_p_2017-03-13_21-57-55.png",
+        "filesize": "40672",
+        "timestamp": "1489456676",
+        "latitude": "33.973175",
+        "longitude": "-84.525390",
+        "uuid": "2bfcb87e-8fe0-812f-f17b-71dd4f60a4fb"
+      },
+      {
+        "file_id": 24804,
+        "filename": "8711_1489456708_p_2017-03-13_21-58-00.png",
+        "filesize": "32375",
+        "timestamp": "1489456681",
+        "latitude": "33.973175",
+        "longitude": "-84.525390",
+        "uuid": "bc6c1ef1-47f3-88b8-57ee-394e06028b85"
+      },
+      {
+        "file_id": 24805,
+        "filename": "8711_1489456711_p_2017-03-13_21-58-03.png",
+        "filesize": "40632",
+        "timestamp": "1489456683",
+        "latitude": "33.973175",
+        "longitude": "-84.525390",
+        "uuid": "a17ac426-cc84-a8ba-d26f-77316205fd12"
+      }
+    ],
+    "impound_paperwork": {
+      "term_id": 1017,
+      "name": "No"
+    },
+    "keys0": {
+      "term_id": 1108,
+      "name": "Yes"
+    },
+    "no_one_present_at_destinatio": "true",
+    "key_tag": "2798",
+    "needs_verbal_release": {
+      "term_id": 1083,
+      "name": "No"
+    },
+    "payer_name": "C",
+    "service_hours_0": 0,
+    "incident_report_timestamp": "1489500360",
+    "verbal_release_give": "true",
+    "verbal_release_given_by": "Qiunn Savall",
+    "verbal_releasee": "(404) 407-9654",
+    "restrict_entire_account": "true",
+    "approved_by": {
+      "user_id": 261
+    },
+    "total_amount_paid": {
+      "term_id": 349,
+      "desc": "Visa",
+      "price": 150,
+      "quantity": 1,
+      "total": 150,
+      "grand_total": 150
+    },
+    "total_balance_owed": 0,
+    "release_to": {
+      "term_id": 369,
+      "name": "Towing Company/Salvage"
+    },
+    "enforcement_end_photos": {
+      "file_id": 27045,
+      "filename": "dl0016.jpg",
+      "filesize": "338331",
+      "timestamp": "1489609117",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "uuid": ""
+    },
+    "contact_name": "Vincent Masters",
+    "releasee_signature": {
+      "file_id": 27046,
+      "filename": "signature_releasee_signature_1489609327_261.png",
+      "filesize": "31302",
+      "timestamp": "1489609327",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "uuid": ""
+    },
+    "mark_as_audited": "false",
+    "enforcement_end_timestamp": "1489609080",
+    "driver_2": {
+      "user_id": 261
+    },
+    "audited_by": {
+      "user_id": 157
+    },
+    "audit_date": "1489755840",
+    "document_images_from_driver": [
+      {
+        "file_id": 25191,
+        "filename": "8711_1489500739_p_2017-03-14_10-11-48.png",
+        "filesize": "1413905",
+        "timestamp": "1489500708",
+        "latitude": "0.000000",
+        "longitude": "0.000000",
+        "uuid": "6a517a31-21d7-01de-17e2-9072183d81b3"
+      },
+      {
+        "file_id": 25192,
+        "filename": "8711_1489500729_p_2017-03-14_10-11-53.png",
+        "filesize": "1371981",
+        "timestamp": "1489500713",
+        "latitude": "0.000000",
+        "longitude": "0.000000",
+        "uuid": "b517af37-b26e-d399-8dc2-06977c4f958f"
+      }
+    ],
+    "access_information": "Savell Quinn",
+    "authorization_signature": {
+      "file_id": 25189,
+      "filename": "signature_authorization_signature_1489500473_261.png",
+      "filesize": "37932",
+      "timestamp": "1489500473",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "uuid": ""
+    },
+    "billing_address_0": {
+      "street": "2881 Reese Rd",
+      "city": "Columbus",
+      "province": "GA",
+      "postal_code": "",
+      "country": "us",
+      "latitude": "32.495187",
+      "longitude": "-84.912731",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "fax": "(706) 718-0754",
+    "name_of_person_accessing": "Christian MCKenzie",
+    "access_by_signature": {
+      "file_id": 26046,
+      "filename": "signature_access_by_signature_1489527958_396.png",
+      "filesize": "39836",
+      "timestamp": "1489527958",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "uuid": ""
+    },
+    "accessed_by_address": {
+      "street": "1955 Bells Ferry Rd, Apt 3213",
+      "city": "Marietta",
+      "province": "GA",
+      "postal_code": "",
+      "country": "us",
+      "latitude": "33.999599",
+      "longitude": "-84.549160",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "accessed_by_phone": "(678) 524-4800",
+    "accessed_by_address_0": {
+      "street": "",
+      "city": "",
+      "province": "GA",
+      "postal_code": "",
+      "country": "us",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "title_search_date": "1489377600",
+    "vehicle_owner_1_name": "savell quinn",
+    "vehicle_owner__address": {
+      "street": "6821 reese rd",
+      "city": "columbus",
+      "province": "GA",
+      "postal_code": "31907",
+      "country": "us",
+      "latitude": "32.506837",
+      "longitude": "-84.916103",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "vehicle_owner__address_0": {
+      "street": "",
+      "city": "",
+      "province": "",
+      "postal_code": "",
+      "country": "",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "province_name": "",
+      "country_name": "",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "lien_holder__name": "FIDELITY BANK",
+    "lien_holder__address_1": {
+      "street": "3 CORPORATE BLVD",
+      "city": "BROOKHAVEN",
+      "province": "GA",
+      "postal_code": "30329-2078",
+      "country": "us",
+      "latitude": "33.836215",
+      "longitude": "-84.331207",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "lien_holder__address_0": {
+      "street": "",
+      "city": "",
+      "province": "",
+      "postal_code": "",
+      "country": "",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "province_name": "",
+      "country_name": "",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "lien_holder__address": {
+      "street": "",
+      "city": "",
+      "province": "",
+      "postal_code": "",
+      "country": "",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "province_name": "",
+      "country_name": "",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "buyer_address": {
+      "street": "",
+      "city": "",
+      "province": "GA",
+      "postal_code": "",
+      "country": "us",
+      "latitude": "0.000000",
+      "longitude": "0.000000",
+      "province_name": "Georgia",
+      "country_name": "United States",
+      "user_lat": "",
+      "user_lng": ""
+    },
+    "recovery_charges": 0,
+    "bill_to": {
+      "node_id": 1857
+    },
+    "default_pricing_zone": {
+      "node_id": 5326
+    },
+    "new_invoice": 301872,
+    "actual_loaded_mileage_0": 0,
+    "odometer_calc": 0,
+    "hours_in_storage": 42.4667,
+    "hour_periods_in_storage": 1,
+    "midnights_in_yard": 2,
+    "tow_fee": 135,
+    "storage_rate": 25,
+    "storage_days": 0,
+    "storage_fee": 0,
+    "st_admin_fee_days": 3,
+    "nd_admin_fee_days": 31,
+    "admin_fee_0": 0,
+    "lien_process_fee_0": 0,
+    "sales_tax_rate_0": 0,
+    "charges": {
+      "term_id": 1034,
+      "desc": "Crash Wrap Side",
+      "price": 15,
+      "quantity": 1,
+      "total": 15,
+      "grand_total": 15
+    },
+    "non_storage_revenue": 150,
+    "loaded_mileage_rate_3": 0,
+    "payment_verified": "false",
+    "total_due": 150
+  },
+  "metadata": {
+    "node_id": 8711,
+    "version_id": 220662,
+    "title": "Marietta Police Department - 2C3CDXHGXDH574445 - GA CAV7769 us  - DODGE CHARGER SXT ",
+    "user_id": 139,
+    "published": "true",
+    "created": "1489452385",
+    "changed": "1496242735",
+    "changed_user_id": 0,
+    "form_part": 5,
+    "locked": "false"
+  },
+  "dispatch_fields": {
+    "field_tow_type": "pd",
+    "dispatcher": {
+      "user_id": 139
+    },
+    "field_dispatching_status": "job_complete",
+    "call_0": 2252,
+    "time_of_call_0": "1489452360",
+    "job_dispatched_time": "1489452360",
+    "job_accepted_time": "1489456680",
+    "started_driving_time": "1489453920",
+    "arrived_at_job_time": "1489453920",
+    "started_towing_time": "1489454400",
+    "arrived_at_destination_time": "1489458600",
+    "dispatch_eta": "1489456980",
+    "job_complete_time": "1489456680",
+    "dispatched_to_driver": {
+      "user_id": 401
+    }
+  },
+  "dispatch_metadata": {
+    "node_id": 8710,
+    "version_id": 64294,
+    "title": "PD - Job Complete",
+    "user_id": 139,
+    "published": "true",
+    "created": "1489452386",
+    "changed": "1489755877",
+    "changed_user_id": 0,
+    "form_part": 0,
+    "locked": "false"
+  }
+}
