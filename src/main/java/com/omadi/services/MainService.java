@@ -32,29 +32,26 @@ public class MainService extends Thread {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private boolean started = false;
     private boolean stopped = false;
+    private boolean finished = false;
+    private String objectType = "";
 
-    private List<Output> outputList;
-    private List<ErrorReport> errorReportList;
+    private List<Output> outputList = new ArrayList<>();
+    private List<ErrorReport> errorReportList = new ArrayList<>();
 
     @Autowired
     private CSVWriterService csvWriterService;
 
-    public void run1(String... args) throws Exception {
+    /*public void run1(String... args) throws Exception {
         BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate(username, password);
         ResponseEntity<String> entity = restTemplate.getForEntity(Url.getNodeUrl(8711), String.class);
         String body = entity.getBody();
         System.out.println(body);
-    }
+    }*/
 
     @Override
     public void run() {
         try {
-            errorReportList = new ArrayList<>();
-            outputList = new ArrayList<>();
-            stopped = false;
-            started = true;
             _run();
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,11 +60,13 @@ public class MainService extends Thread {
 
     private void _run() throws IOException {
         List<Type> types = Type.getTypes();
+        logger.info("username: {}\npassword: {}", username, password);
         BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate(username, password);
         for (Type type : types) {
             if (stopped) {
                 break;
             }
+            objectType = type.getType();
             int page = 0;
             String url = Url.getReportUrl(type);
             while (true) {
@@ -107,7 +106,8 @@ public class MainService extends Thread {
             csvWriterService.save(errorReportList);
         }
 
-        started = false;
+        finished = true;
+        stopped = true;
     }
 
     private void parseData(BasicAuthRestTemplate restTemplate, OmadiReport omadiReport) throws IOException {
@@ -253,15 +253,19 @@ public class MainService extends Thread {
         return errorReportList;
     }
 
-    public boolean isStarted() {
-        return started;
-    }
-
     public boolean isStopped() {
         return stopped;
     }
 
+    public String getObjectType() {
+        return objectType;
+    }
+
     public void stopProcess() {
         stopped = true;
+    }
+
+    public boolean isFinished() {
+        return finished;
     }
 }

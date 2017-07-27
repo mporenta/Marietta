@@ -1,66 +1,85 @@
 package com.omadi.controller;
 
-import com.omadi.entities.ErrorReport;
+import com.omadi.config.AppConfig;
 import com.omadi.entities.Output;
+import com.omadi.entities.Response;
+import com.omadi.entities.Status;
 import com.omadi.services.MainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@CrossOrigin(origins = "http://usve254453.serverprofi24.com")
+@RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MainController {
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-    @Autowired
     private MainService mainService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody String homePage() {
+    public String homePage() {
         logger.info("Home Page");
 
         return "home page";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/start")
-    public @ResponseBody String startScraping() {
+    @RequestMapping(value = "/start")
+    public Response startScraping() {
         logger.info("Start Main Scraping Service");
-        if (mainService.isStarted()) {
-            return "The service has already been started! You can't start it multiple times.";
-        }
-        if (mainService.isStopped()) {
-            mainService.run();
+        Response response = new Response();
+        if (mainService != null) {
+            response.setMessage("You can't start the service, because it has already been started!");
         } else {
+            ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+            mainService = ctx.getBean(MainService.class);
             mainService.start();
+            response.setMessage("");
         }
 
-        return "The service has been successfully started!";
+        return response;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/stop")
-    public @ResponseBody String stopScraping() {
+    @RequestMapping(value = "/stop")
+    public Response stopScraping() {
         logger.info("Stop Main Scraping Service");
-        if (!mainService.isStarted()) {
-            return "The service has not been started yet!";
+        Response response = new Response();
+        if (mainService == null) {
+            response.setMessage("You can't stop the process, because the service has not been started yet!");
+        } else {
+            mainService.stopProcess();
+            response.setMessage("");
+            while (!mainService.isFinished()) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            mainService = null;
         }
-        mainService.stopProcess();
 
-        return "The service has been successfully stopped!";
+        return response;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/status")
-    public @ResponseBody String checkStatus() {
+    @RequestMapping("/status")
+    public Status checkStatus() {
         logger.info("Checking the Status");
+        Status status = new Status();
 
-        List<Output> outputList = mainService.getOutputList();
-//        List<ErrorReport> errorReportList = mainService.getErrorReportList();
+        if (mainService == null) {
+            status.setStopped(true);
+        } else {
+            status.setStopped(mainService.isStopped());
+            status.setCurrentType(mainService.getObjectType());
+            List<Output> outputList = mainService.getOutputList();
+            status.setOutputSize(outputList.size());
+        }
 
-        return String.format("Scraped %s records", outputList.size());
+        return status;
     }
 }

@@ -28,6 +28,7 @@ public class BasicAuthRestTemplate extends RestTemplate {
         try {
             entity = super.getForEntity(url, responseType, uriVariables);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             sleep(30000);
             return getForEntity(url, responseType, uriVariables);
         }
