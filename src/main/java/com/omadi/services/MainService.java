@@ -48,7 +48,7 @@ public class MainService extends Thread {
 
     /*public void run1(String... args) throws Exception {
         BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate(username, password);
-        ResponseEntity<String> entity = restTemplate.getForEntity(Url.getNodeUrl(8711), String.class);
+        ResponseEntity<String> entity = restTemplate.getForEntity(Url.getNodeUrl(21452), String.class);
         String body = entity.getBody();
         System.out.println(body);
     }*/
@@ -127,7 +127,7 @@ public class MainService extends Thread {
 
                 Output output = outputService.isExist(nodeId);
                 if (output != null) {
-                    return;
+                    continue;
                 }
 
                 ResponseEntity<String> result = restTemplate
@@ -172,7 +172,8 @@ public class MainService extends Thread {
                         addToErrorReport(nodeId, type, "hook_and_miles_subtotal");
                         continue;
                     }
-                    Integer hookAndMilesSubtotal = (Integer) fields.get("hook_and_miles_subtotal");
+                    String objectValue = String.valueOf(fields.get("hook_and_miles_subtotal"));
+                    Double hookAndMilesSubtotal = Double.parseDouble(objectValue);
 
                     //Calculate "Work service hours"
                     Double workServiceHours = (jobCompleteTime - jobAcceptedTime) / 3600.0D;

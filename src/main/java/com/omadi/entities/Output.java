@@ -27,7 +27,7 @@ public class Output extends Base {
     private int newInvoice;
 
     @Column(name = "hook_and_miles_subtotal")
-    private int hookAndMilesSubtotal;
+    private double hookAndMilesSubtotal;
 
     @Column(name = "work_service_hours")
     private double workServiceHours;
@@ -86,11 +86,11 @@ public class Output extends Base {
         this.newInvoice = newInvoice;
     }
 
-    public int getHookAndMilesSubtotal() {
+    public double getHookAndMilesSubtotal() {
         return hookAndMilesSubtotal;
     }
 
-    public void setHookAndMilesSubtotal(int hookAndMilesSubtotal) {
+    public void setHookAndMilesSubtotal(double hookAndMilesSubtotal) {
         this.hookAndMilesSubtotal = hookAndMilesSubtotal;
     }
 
