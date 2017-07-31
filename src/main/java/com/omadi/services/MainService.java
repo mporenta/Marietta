@@ -259,7 +259,7 @@ public class MainService extends Thread {
     }
 
     public List<Output> getOutputList() {
-        return outputList;
+        return outputService.getAll();
     }
 
     public String getObjectType() {
