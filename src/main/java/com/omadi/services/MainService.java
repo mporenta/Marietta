@@ -32,12 +32,16 @@ public class MainService extends Thread {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private boolean stopped = false;
-    private boolean finished = false;
     private String objectType = "";
 
     private List<Output> outputList = new ArrayList<>();
     private List<ErrorReport> errorReportList = new ArrayList<>();
+
+    @Autowired
+    private OutputService outputService;
+
+    @Autowired
+    private TypeService typeService;
 
     @Autowired
     private CSVWriterService csvWriterService;
@@ -59,18 +63,18 @@ public class MainService extends Thread {
     }
 
     private void _run() throws IOException {
-        List<Type> types = Type.getTypes();
+        List<Type> types = typeService.getAll();
         logger.info("username: {}\npassword: {}", username, password);
         BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate(username, password);
         for (Type type : types) {
-            if (stopped) {
+            if (this.isInterrupted()) {
                 break;
             }
             objectType = type.getType();
             int page = 0;
             String url = Url.getReportUrl(type);
             while (true) {
-                if (stopped) {
+                if (this.isInterrupted()) {
                     break;
                 }
                 logger.info("Requesting url {}", url);
@@ -94,8 +98,12 @@ public class MainService extends Thread {
                     break;
                 }
             }
+
+            type.setDone(1);
+            typeService.save(type);
         }
 
+        List<Output> outputList = outputService.getAll();
         logger.info("Saving... {} records", outputList.size());
         csvWriterService.start("output", Output.class);
         csvWriterService.save(outputList);
@@ -105,21 +113,25 @@ public class MainService extends Thread {
             csvWriterService.start("error_report", ErrorReport.class);
             csvWriterService.save(errorReportList);
         }
-
-        finished = true;
-        stopped = true;
     }
 
     private void parseData(BasicAuthRestTemplate restTemplate, OmadiReport omadiReport) throws IOException {
         List<ReportData> reportDataList = omadiReport.getReportDataList();
         for (ReportData reportData : reportDataList) {
-            if (stopped) {
+            if (this.isInterrupted()) {
                 break;
             }
             if (reportData.getFormPart() >= 1) {
-                logger.info("Parsing id {}", reportData.getId());
+                int nodeId = reportData.getId();
+                logger.info("Parsing id {}", nodeId);
+
+                Output output = outputService.isExist(nodeId);
+                if (output != null) {
+                    return;
+                }
+
                 ResponseEntity<String> result = restTemplate
-                        .getForEntity(Url.getNodeUrl(reportData.getId()), String.class);
+                        .getForEntity(Url.getNodeUrl(nodeId), String.class);
 
                 if (result.getStatusCode().equals(HttpStatus.OK)) {
                     String body = result.getBody();
@@ -140,7 +152,7 @@ public class MainService extends Thread {
                     Long jobAcceptedTime = getJobAcceptedTime(dispatchFields, enforcementStartTimestamp);
 
                     if (!dispatchFields.containsKey("job_complete_time")) {
-                        addToErrorReport(reportData.getId(), type, "job_complete_time");
+                        addToErrorReport(nodeId, type, "job_complete_time");
                         continue;
                     }
                     Long jobCompleteTime = Long.parseLong(dispatchFields.get("job_complete_time"));
@@ -150,14 +162,14 @@ public class MainService extends Thread {
 
                     //New invoice
                     if (!fields.containsKey("new_invoice")) {
-                        addToErrorReport(reportData.getId(), type, "new_invoice");
+                        addToErrorReport(nodeId, type, "new_invoice");
                         continue;
                     }
                     Integer newInvoice = (Integer) fields.get("new_invoice");
 
                     //Hook and miles subtotal
                     if (!fields.containsKey("hook_and_miles_subtotal")) {
-                        addToErrorReport(reportData.getId(), type, "hook_and_miles_subtotal");
+                        addToErrorReport(nodeId, type, "hook_and_miles_subtotal");
                         continue;
                     }
                     Integer hookAndMilesSubtotal = (Integer) fields.get("hook_and_miles_subtotal");
@@ -170,7 +182,7 @@ public class MainService extends Thread {
 
                     //Calculate "Revenue by hour"
                     if (workServiceHours == 0) {
-                        addToErrorReport(reportData.getId(), type, "workServiceHours is 0, it is impossible divide by 0");
+                        addToErrorReport(nodeId, type, "workServiceHours is 0, it is impossible divide by 0");
                         continue;
                     }
                     Double revenueByHour = hookAndMilesSubtotal / workServiceHours;
@@ -183,7 +195,8 @@ public class MainService extends Thread {
                             "truck", "vehicle_2");
 
                     //New Output Object
-                    Output output = new Output();
+                    output = new Output();
+                    output.setNodeId(nodeId);
                     output.setBillTo(billTo);
                     output.setJobAcceptedTime(jobAcceptedTime);
                     output.setJobCompleteTime(jobCompleteTime);
@@ -193,7 +206,7 @@ public class MainService extends Thread {
                     output.setRevenueByHour(String.format("$%s", revenueByHour));
                     output.setTruck(truck);
 
-                    outputList.add(output);
+                    outputService.save(output);
                 }
             }
         }
@@ -249,23 +262,7 @@ public class MainService extends Thread {
         return outputList;
     }
 
-    public List<ErrorReport> getErrorReportList() {
-        return errorReportList;
-    }
-
-    public boolean isStopped() {
-        return stopped;
-    }
-
     public String getObjectType() {
         return objectType;
-    }
-
-    public void stopProcess() {
-        stopped = true;
-    }
-
-    public boolean isFinished() {
-        return finished;
     }
 }

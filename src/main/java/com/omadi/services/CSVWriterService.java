@@ -5,6 +5,7 @@ import com.omadi.entities.Output;
 import com.opencsv.CSVWriter;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -19,7 +20,7 @@ public class CSVWriterService {
         String currentTime = "_" + LocalDateTime.now();
         currentTime = currentTime.replace(":", "-");
         currentTime = currentTime.replace(".", "-");
-        fileName = String.format("%s_%s.csv", fileName, currentTime);
+        fileName = "csv_files" + File.separator + String.format("%s_%s.csv", fileName, currentTime);
 
         writer = new CSVWriter(new FileWriter(fileName));
         Field[] declaredFields = clazz.getDeclaredFields();

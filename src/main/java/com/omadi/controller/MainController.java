@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -51,14 +53,12 @@ public class MainController {
         if (mainService == null) {
             response.setMessage("You can't stop the process, because the service has not been started yet!");
         } else {
-            mainService.stopProcess();
+            mainService.interrupt();
             response.setMessage("");
-            while (!mainService.isFinished()) {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+            try {
+                mainService.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             mainService = null;
         }
@@ -74,7 +74,7 @@ public class MainController {
         if (mainService == null) {
             status.setStopped(true);
         } else {
-            status.setStopped(mainService.isStopped());
+            status.setStopped(mainService.isInterrupted());
             status.setCurrentType(mainService.getObjectType());
             List<Output> outputList = mainService.getOutputList();
             status.setOutputSize(outputList.size());

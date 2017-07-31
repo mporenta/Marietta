@@ -1,37 +1,29 @@
 package com.omadi.entities;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum Type {
-    PD("pd"),
-    GEN("gen"),
-    TOW("tow"),
-    GEICO("geico"),
-    COD("cod"),
-    SHOP_TOW("shop_tow"),
-    MISC_INVOICE("misc_invoice"),
-    SERVICE("service");
+@Entity
+@Table(name = "omadi_report_types")
+public class Type {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
+    @Column(name = "type_name")
     private String type;
 
-    Type(String type) {
-        this.type = type;
+    @Column(name = "done")
+    private int done;
+
+    public int getId() {
+        return id;
     }
 
-    public static List<Type> getTypes() {
-        List<Type> typeList = new ArrayList<>();
-
-        typeList.add(PD);
-        typeList.add(GEN);
-        typeList.add(TOW);
-        typeList.add(GEICO);
-        typeList.add(COD);
-        typeList.add(SHOP_TOW);
-        typeList.add(MISC_INVOICE);
-        typeList.add(SERVICE);
-
-        return typeList;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getType() {
@@ -40,5 +32,13 @@ public enum Type {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getDone() {
+        return done;
+    }
+
+    public void setDone(int done) {
+        this.done = done;
     }
 }

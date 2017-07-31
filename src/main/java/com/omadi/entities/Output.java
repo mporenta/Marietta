@@ -1,14 +1,58 @@
 package com.omadi.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "omadi_report")
 public class Output extends Base {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "node_id")
+    private int nodeId;
+
+    @Column(name = "bill_to")
     private String billTo;
+
+    @Column(name = "job_accepted_time")
     private long jobAcceptedTime;
+
+    @Column(name = "job_complete_time")
     private long jobCompleteTime;
+
+    @Column(name = "new_invoice")
     private int newInvoice;
+
+    @Column(name = "hook_and_miles_subtotal")
     private int hookAndMilesSubtotal;
+
+    @Column(name = "work_service_hours")
     private double workServiceHours;
+
+    @Column(name = "revenue_by_hour")
     private String revenueByHour;
+
+    @Column(name = "truck")
     private String truck;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getNodeId() {
+        return nodeId;
+    }
+
+    public void setNodeId(int nodeId) {
+        this.nodeId = nodeId;
+    }
 
     public String getBillTo() {
         return billTo;
