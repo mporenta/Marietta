@@ -151,6 +151,10 @@ public class MainService extends Thread {
                     }
 
                     //Job accepted and completed time
+                    if (!dataMap.containsKey("dispatch_fields")) {
+                        addToErrorReport(nodeId, type, "dispatch_fields");
+                        continue;
+                    }
                     Map<String, String> dispatchFields = (Map<String, String>) dataMap.get("dispatch_fields");
                     Long jobAcceptedTime = getJobAcceptedTime(dispatchFields, enforcementStartTimestamp);
 
