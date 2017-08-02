@@ -139,13 +139,16 @@ public class MainService extends Thread {
 
                     //Fields - Main Map
                     Map<String, Object> fields = (Map<String, Object>) dataMap.get("fields");
-                    String type = (String) dataMap.get("type");
+                    String type = String.valueOf(dataMap.get("type"));
 
                     //Bill to
                     String billTo = requestToObjectType(restTemplate, fields, "shop", "bill_to",
                             "account_name");
 
-                    Long enforcementStartTimestamp = Long.parseLong((String)fields.get("enforcement_start_timestamp"));
+                    Long enforcementStartTimestamp = 0L;
+                    if (fields.containsKey("enforcement_start_timestamp")) {
+                        enforcementStartTimestamp = Long.parseLong(String.valueOf(fields.get("enforcement_start_timestamp")));
+                    }
 
                     //Job accepted and completed time
                     Map<String, String> dispatchFields = (Map<String, String>) dataMap.get("dispatch_fields");
@@ -256,7 +259,7 @@ public class MainService extends Thread {
         Map<String, Object> resultMap = mapper.readValue(resultBody, Map.class);
         Map<String, Object> resultFields = (Map<String, Object>) resultMap.get("fields");
 
-        return (String) resultFields.get(field2);
+        return String.valueOf(resultFields.get(field2));
     }
 
     public List<Output> getOutputList() {

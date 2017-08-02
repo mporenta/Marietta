@@ -40,11 +40,11 @@ public class MainController {
             response.setMessage("You can't start the service, because it has already been started!");
         } else {
 
-            String[] beanDefinitionNames = context.getBeanDefinitionNames();
+            /*String[] beanDefinitionNames = context.getBeanDefinitionNames();
             for (int i = 0; i < beanDefinitionNames.length; i++) {
                 String beanDefinitionName = beanDefinitionNames[i];
                 logger.info(beanDefinitionName);
-            }
+            }*/
             mainService = context.getBean(MainService.class);
 
             mainService.start();
